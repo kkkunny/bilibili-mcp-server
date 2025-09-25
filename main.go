@@ -1,7 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"github.com/mark3labs/mcp-go/server"
+
+	"github.com/kkkunny/bilibili-mcp-server/tools"
+)
 
 func main() {
-	fmt.Println("Hello World")
+	mapSvr := server.NewMCPServer("BiliBili", "0.0.1")
+	mapSvr.AddTools(tools.Tools...)
+	httpSvr := server.NewStreamableHTTPServer(mapSvr)
+	if err := httpSvr.Start(":80"); err != nil {
+		panic(err)
+	}
 }
