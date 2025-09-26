@@ -56,7 +56,7 @@ func toolSearchVideos(ctx context.Context, request mcp.CallToolRequest) (*mcp.Ca
 		return mcp.NewToolResultJSON(&SearchVideosResult{})
 	}
 
-	videos := make([]*VideoSearchInfo, 0, len(videoResult.Data))
+	videos := make([]*VideoSearchInfo, len(videoResult.Data))
 	for i, data := range videoResult.Data {
 		id, _ := convertor.ToInt(data["id"])
 		title := convertor.ToString(data["title"])
